@@ -156,7 +156,7 @@ class MyFrame2 ( wx.Frame ):
 		self.m_grid3 = wx.grid.Grid( sbSizer3.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.Size( -1,150 ), 0 )
 		
 		# Grid
-		self.m_grid3.CreateGrid( 5, 10 )
+		self.m_grid3.CreateGrid( 5, 20 )
 		self.m_grid3.EnableEditing( True )
 		self.m_grid3.EnableGridLines( True )
 		self.m_grid3.EnableDragGridSize( False )
