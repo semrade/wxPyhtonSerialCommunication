@@ -77,15 +77,15 @@ class MainApp(MyFrame2):
         print("--------------Serial ports---------------")
         return AppPorts
     
-    def m_choice6OnChoice( self, event ):
+    def choice6OnChoice( self, event ):
         ComPort = self.choice6.GetStringSelection()
         print(ComPort)
         
-    def m_choice2OnChoice( self, event ):
-        BaudRate = int(self.m_choice2.GetStringSelection())
+    def choice2OnChoice( self, event ):
+        BaudRate = int(self.choice2.GetStringSelection())
         print(BaudRate)
     
-    def m_choice3OnChoice( self, event ):
+    def choice3OnChoice( self, event ):
         Parity = self.choice3.GetStringSelection()
         if Parity == 'None':
             Parity = 'N'
@@ -95,15 +95,20 @@ class MainApp(MyFrame2):
             Parity = 'E'
         print(Parity)
     
-    def m_choice4OnChoice( self, event ):
+    def choice4OnChoice( self, event ):
         Databits = int(self.choice4.GetStringSelection())
         print(Databits)        
     
-    def m_choice5OnChoice( self, event ):
+    def choice5OnChoice( self, event ):
         StopBit = int(self.choice5.GetStringSelection())
         print(StopBit)
 
     def m_button5OnButtonClick( self, event ):
+        event.Skip()
+            
+        
+        # Virtual event handlers, overide them in your derived class
+    def button5OnButtonClick( self, event ):
         if self.serialPort.is_open == True:
             self.serialPort.close()
             self.button5.SetBackgroundColour("Red")
@@ -113,13 +118,24 @@ class MainApp(MyFrame2):
             self.button5.SetBackgroundColour("Green")
             self.button5.SetLabel("Close")
 
-    def m_button10OnButtonClick( self, event ):
+    
+    def button4OnButtonClick( self, event ):
+        self.grid3.AppendRows(numRows=1, updateLabels=True) 
+    
+    def button51OnButtonClick( self, event ):
         self.grid3.DeleteRows(numRows=1, updateLabels=True)
     
-    def m_button9OnButtonClick( self, event ):
-        self.grid3.AppendRows(numRows=1, updateLabels=True)     
-        
+    def button6OnButtonClick( self, event ):
+        event.Skip()
     
+    def button7OnButtonClick( self, event ):
+        event.Skip()
+    
+    def button8OnButtonClick( self, event ):
+        event.Skip()
+    
+    def button9OnButtonClick( self, event ):
+        event.Skip()
 
     
     def add(self, name="plot"):

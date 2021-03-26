@@ -9,6 +9,8 @@ def cleanFrame(prjDir,filename):
     ptrFile=open(srcFile,'r')
     fbGeneratedCode = ptrFile.read()
     fbGeneratedCode = fbGeneratedCode.replace('animate',"adv")
+    fbGeneratedCode = fbGeneratedCode.replace('SetSizeHintsSz',"SetSizeHints")
+    fbGeneratedCode = fbGeneratedCode.replace('AppendItem',"Append")
     fbGeneratedCode = fbGeneratedCode.replace('m_','')
     ptrFile.close()
     # ----- Save src code
