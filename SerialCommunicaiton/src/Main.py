@@ -7,6 +7,13 @@ import sys
 import wx.lib.plot as plot
 import serial.tools.list_ports
 import random
+import matplotlib as mpl
+from matplotlib.backends.backend_wxagg import (
+    FigureCanvasWxAgg as FigureCanvas,
+    NavigationToolbar2WxAgg as NavigationToolbar)
+from numpy.lib.function_base import append
+from cmath import cos
+
 ComPort = ""
 BaudRate = 0
 Parity = 0
@@ -20,11 +27,24 @@ class Page(wx.Panel):
         colors = ["red", "blue", "gray", "yellow", "green"]
         self.SetBackgroundColour(random.choice(colors))
 
+class Plot(wx.Panel):
+    def __init__(self, parent, id=-1, dpi=None, **kwargs):
+        wx.Panel.__init__(self, parent, id=id, **kwargs)
+        self.figure = mpl.figure.Figure(dpi=dpi, figsize=(2, 2))
+        self.canvas = FigureCanvas(self, -1, self.figure)
+        self.toolbar = NavigationToolbar(self.canvas)
+        self.toolbar.Realize()
+        
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        sizer.Add(self.canvas, 1, wx.EXPAND)
+        sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.SetSizer(sizer)
+        
 class MainApp(MyFrame2):
     def __init__(self):
         MyFrame2.__init__(self, None)
         self.serialPort = serial.Serial()
-        self.pageCounter = 0
+        self.GraphCounter = 0
     
     def serialOpen(self):
 
@@ -58,7 +78,7 @@ class MainApp(MyFrame2):
         return AppPorts
     
     def m_choice6OnChoice( self, event ):
-        ComPort = self.m_choice6.GetStringSelection()
+        ComPort = self.choice6.GetStringSelection()
         print(ComPort)
         
     def m_choice2OnChoice( self, event ):
@@ -66,7 +86,7 @@ class MainApp(MyFrame2):
         print(BaudRate)
     
     def m_choice3OnChoice( self, event ):
-        Parity = self.m_choice3.GetStringSelection()
+        Parity = self.choice3.GetStringSelection()
         if Parity == 'None':
             Parity = 'N'
         elif Parity == 'Odd':
@@ -76,38 +96,41 @@ class MainApp(MyFrame2):
         print(Parity)
     
     def m_choice4OnChoice( self, event ):
-        Databits = int(self.m_choice4.GetStringSelection())
+        Databits = int(self.choice4.GetStringSelection())
         print(Databits)        
     
     def m_choice5OnChoice( self, event ):
-        StopBit = int(self.m_choice5.GetStringSelection())
+        StopBit = int(self.choice5.GetStringSelection())
         print(StopBit)
 
     def m_button5OnButtonClick( self, event ):
         if self.serialPort.is_open == True:
             self.serialPort.close()
-            self.m_button5.SetBackgroundColour("Red")
-            self.m_button5.SetLabel("Open")
+            self.button5.SetBackgroundColour("Red")
+            self.button5.SetLabel("Open")
         else:
             self.serialOpen()
-            self.m_button5.SetBackgroundColour("Green")
-            self.m_button5.SetLabel("Close")
+            self.button5.SetBackgroundColour("Green")
+            self.button5.SetLabel("Close")
 
     def m_button10OnButtonClick( self, event ):
-        self.m_grid3.DeleteRows(numRows=1, updateLabels=True)
+        self.grid3.DeleteRows(numRows=1, updateLabels=True)
     
     def m_button9OnButtonClick( self, event ):
-        self.m_grid3.AppendRows(numRows=1, updateLabels=True)     
+        self.grid3.AppendRows(numRows=1, updateLabels=True)     
         
     
-    def addPage(self):
-        self.pageCounter += 1
-        page      = Page(self.m_notebook1)
-        pageTitle = "Page: {0}".format(str(self.pageCounter))
-        self.m_notebook1.AddPage(page, pageTitle)
+
+    
+    def add(self, name="plot"):
+        page = Plot(self.auinotebook1)
+        self.GraphCounter += 1
+        pageTitle = "Graphe: {0}".format(str(self.GraphCounter))
+        self.auinotebook1.AddPage(page, pageTitle)
+        return page.figure
 
     def onButtonRemove(self, event):   
-        self.m_notebook1.DeletePage(0) 
+        self.notebook1.DeletePage(0) 
 
 if __name__ == "__main__":
 
@@ -118,10 +141,16 @@ if __name__ == "__main__":
     
     
     for portElem in port:
-        fram.m_choice6.AppendItems(portElem)  
+        fram.choice6.AppendItems(portElem)  
+        
+    x1 = list(range(1, 1000))
+    y1 = [cos(int(i)) for i in x1]
+    plotter = fram.auinotebook1
+    axes1 = fram.add().gca()
+    axes1.plot(x1, y1)
+    axes2 = fram.add().gca()
+    axes2.plot(x1, y1)
 
-    fram.addPage()
-    fram.addPage()
     #fram.serialOpen()
     fram.Show(True)
     app.MainLoop()

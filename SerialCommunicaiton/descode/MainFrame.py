@@ -9,9 +9,10 @@
 
 import wx
 import wx.xrc
-import wx.adv
+import wx.animate
 import wx.grid
 import wx.richtext
+import wx.aui
 
 ###########################################################################
 ## Class MyFrame2
@@ -85,7 +86,7 @@ class MyFrame2 ( wx.Frame ):
 		self.m_choice5.SetSelection( 0 )
 		sbSizer1.Add( self.m_choice5, 0, wx.ALL, 10 )
 		
-		self.m_animCtrl1 = wx.adv.AnimationCtrl( sbSizer1.GetStaticBox(), wx.ID_ANY, wx.adv.NullAnimation, wx.DefaultPosition, wx.Size( 45,45 ), wx.adv.AC_DEFAULT_STYLE ) 
+		self.m_animCtrl1 = wx.animate.AnimationCtrl( sbSizer1.GetStaticBox(), wx.ID_ANY, wx.animate.NullAnimation, wx.DefaultPosition, wx.Size( 45,45 ), wx.animate.AC_DEFAULT_STYLE ) 
 		sbSizer1.Add( self.m_animCtrl1, 0, wx.ALL, 0 )
 		
 		
@@ -106,7 +107,7 @@ class MyFrame2 ( wx.Frame ):
 		
 		sbSizer2 = wx.StaticBoxSizer( wx.StaticBox( self.m_panel1, wx.ID_ANY, u"Command Management" ), wx.HORIZONTAL )
 		
-		self.m_staticText11 = wx.StaticText( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Rows :", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText11 = wx.StaticText( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Rows +/- :", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText11.Wrap( -1 )
 		sbSizer2.Add( self.m_staticText11, 0, wx.ALL, 10 )
 		
@@ -119,7 +120,7 @@ class MyFrame2 ( wx.Frame ):
 		self.m_staticline31 = wx.StaticLine( sbSizer2.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_VERTICAL )
 		sbSizer2.Add( self.m_staticline31, 0, wx.ALL|wx.EXPAND, 5 )
 		
-		self.m_staticText12 = wx.StaticText( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Colos :", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText12 = wx.StaticText( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Colos +/- :", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText12.Wrap( -1 )
 		sbSizer2.Add( self.m_staticText12, 0, wx.ALL, 10 )
 		
@@ -202,9 +203,14 @@ class MyFrame2 ( wx.Frame ):
 		
 		sbSizer5 = wx.StaticBoxSizer( wx.StaticBox( self.m_panel1, wx.ID_ANY, u"Py Graph" ), wx.HORIZONTAL )
 		
-		self.m_notebook1 = wx.Notebook( sbSizer5.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer113 = wx.BoxSizer( wx.VERTICAL )
 		
-		sbSizer5.Add( self.m_notebook1, 1, wx.EXPAND |wx.ALL, 0 )
+		self.m_auinotebook1 = wx.aui.AuiNotebook( sbSizer5.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.aui.AUI_NB_DEFAULT_STYLE )
+		
+		bSizer113.Add( self.m_auinotebook1, 1, wx.EXPAND |wx.ALL, 0 )
+		
+		
+		sbSizer5.Add( bSizer113, 1, wx.EXPAND, 0 )
 		
 		
 		bSizer112.Add( sbSizer5, 1, wx.ALL|wx.EXPAND, 0 )
@@ -258,6 +264,12 @@ class MyFrame2 ( wx.Frame ):
 		self.m_choice3.Bind( wx.EVT_CHOICE, self.m_choice3OnChoice )
 		self.m_choice4.Bind( wx.EVT_CHOICE, self.m_choice4OnChoice )
 		self.m_choice5.Bind( wx.EVT_CHOICE, self.m_choice5OnChoice )
+		self.m_button4.Bind( wx.EVT_BUTTON, self.m_button4OnButtonClick )
+		self.m_button51.Bind( wx.EVT_BUTTON, self.m_button51OnButtonClick )
+		self.m_button6.Bind( wx.EVT_BUTTON, self.m_button6OnButtonClick )
+		self.m_button7.Bind( wx.EVT_BUTTON, self.m_button7OnButtonClick )
+		self.m_button8.Bind( wx.EVT_BUTTON, self.m_button8OnButtonClick )
+		self.m_button9.Bind( wx.EVT_BUTTON, self.m_button9OnButtonClick )
 	
 	def __del__( self ):
 		pass
@@ -280,6 +292,24 @@ class MyFrame2 ( wx.Frame ):
 		event.Skip()
 	
 	def m_choice5OnChoice( self, event ):
+		event.Skip()
+	
+	def m_button4OnButtonClick( self, event ):
+		event.Skip()
+	
+	def m_button51OnButtonClick( self, event ):
+		event.Skip()
+	
+	def m_button6OnButtonClick( self, event ):
+		event.Skip()
+	
+	def m_button7OnButtonClick( self, event ):
+		event.Skip()
+	
+	def m_button8OnButtonClick( self, event ):
+		event.Skip()
+	
+	def m_button9OnButtonClick( self, event ):
 		event.Skip()
 	
 
