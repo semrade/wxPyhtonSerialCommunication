@@ -11,8 +11,8 @@ import matplotlib as mpl
 from matplotlib.backends.backend_wxagg import (
     FigureCanvasWxAgg as FigureCanvas,
     NavigationToolbar2WxAgg as NavigationToolbar)
-from numpy.lib.function_base import append
-from cmath import cos
+from Cleaner import *
+from cmath import cos, sin
 
 ComPort = ""
 BaudRate = 0
@@ -30,16 +30,16 @@ class Page(wx.Panel):
 class Plot(wx.Panel):
     def __init__(self, parent, id=-1, dpi=None, **kwargs):
         wx.Panel.__init__(self, parent, id=id, **kwargs)
-        self.figure = mpl.figure.Figure(dpi=dpi, figsize=(2, 2))
+        self.figure = mpl.figure.Figure(dpi=dpi, figsize=(1, 1))
         self.canvas = FigureCanvas(self, -1, self.figure)
         self.toolbar = NavigationToolbar(self.canvas)
         self.toolbar.Realize()
-        
+
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer.Add(self.canvas, 1, wx.EXPAND)
-        sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        sizer.Add(self.toolbar, 0, wx.LEFT|wx.ALL | wx.EXPAND)
         self.SetSizer(sizer)
-        
+
 class MainApp(MyFrame2):
     def __init__(self):
         MyFrame2.__init__(self, None)
@@ -49,7 +49,6 @@ class MainApp(MyFrame2):
     def serialOpen(self):
 
         try:
-            #serialPort = serial.Serial(ComPort, BaudRate, Databits, Parity, StopBit, timeout = None, xonxoff=0, rtscts=0)
             self.serialPort.port = ComPort
             self.serialPort.baudrate = BaudRate
             self.serialPort.parity = Parity
@@ -120,10 +119,10 @@ class MainApp(MyFrame2):
 
     
     def button4OnButtonClick( self, event ):
-        self.grid3.AppendRows(numRows=1, updateLabels=True) 
-    
-    def button51OnButtonClick( self, event ):
         self.grid3.DeleteRows(numRows=1, updateLabels=True)
+         
+    def button51OnButtonClick( self, event ):
+        self.grid3.AppendRows(numRows=1, updateLabels=True)
     
     def button6OnButtonClick( self, event ):
         event.Skip()
@@ -135,10 +134,10 @@ class MainApp(MyFrame2):
         event.Skip()
     
     def button9OnButtonClick( self, event ):
-        event.Skip()
+        self.add()
 
     
-    def add(self, name="plot"):
+    def add(self):
         page = Plot(self.auinotebook1)
         self.GraphCounter += 1
         pageTitle = "Graphe: {0}".format(str(self.GraphCounter))
@@ -164,6 +163,10 @@ if __name__ == "__main__":
     plotter = fram.auinotebook1
     axes1 = fram.add().gca()
     axes1.plot(x1, y1)
+    
+    x1 = list(range(1, 1000))
+    y1 = [sin(int(i)) for i in x1]
+    
     axes2 = fram.add().gca()
     axes2.plot(x1, y1)
 

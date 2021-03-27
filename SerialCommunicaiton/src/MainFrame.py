@@ -39,6 +39,9 @@ class MyFrame2 ( wx.Frame ):
 		sbSizer1 = wx.StaticBoxSizer( wx.StaticBox( self.panel1, wx.ID_ANY, u"Serial Port Connection" ), wx.HORIZONTAL )
 		
 		self.button5 = wx.Button( sbSizer1.GetStaticBox(), wx.ID_ANY, u"Open", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.button5.SetDefault() 
+		self.button5.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), 70, 90, 90, False, wx.EmptyString ) )
+		
 		sbSizer1.Add( self.button5, 0, wx.ALL, 10 )
 		
 		self.staticText10 = wx.StaticText( sbSizer1.GetStaticBox(), wx.ID_ANY, u"Port :", wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -112,6 +115,7 @@ class MyFrame2 ( wx.Frame ):
 		sbSizer2.Add( self.staticText11, 0, wx.ALL, 10 )
 		
 		self.button4 = wx.Button( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Delete (-)", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.button4.SetDefault() 
 		sbSizer2.Add( self.button4, 0, wx.ALL, 5 )
 		
 		self.button51 = wx.Button( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Add(+)", wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -125,6 +129,7 @@ class MyFrame2 ( wx.Frame ):
 		sbSizer2.Add( self.staticText12, 0, wx.ALL, 10 )
 		
 		self.button6 = wx.Button( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Delete (-)", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.button6.SetDefault() 
 		sbSizer2.Add( self.button6, 0, wx.ALL, 5 )
 		
 		self.button7 = wx.Button( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Add (+)", wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -133,15 +138,22 @@ class MyFrame2 ( wx.Frame ):
 		self.staticline4 = wx.StaticLine( sbSizer2.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_VERTICAL )
 		sbSizer2.Add( self.staticline4, 0, wx.EXPAND |wx.ALL, 5 )
 		
-		self.staticText13 = wx.StaticText( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Graphe +/- :", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.staticText13 = wx.StaticText( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Graphe + :", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.staticText13.Wrap( -1 )
 		sbSizer2.Add( self.staticText13, 0, wx.ALL, 10 )
 		
-		self.button8 = wx.Button( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Delete (-)", wx.DefaultPosition, wx.DefaultSize, 0 )
-		sbSizer2.Add( self.button8, 0, wx.ALL, 5 )
-		
 		self.button9 = wx.Button( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Add (+)", wx.DefaultPosition, wx.DefaultSize, 0 )
 		sbSizer2.Add( self.button9, 0, wx.ALL, 5 )
+		
+		self.staticline41 = wx.StaticLine( sbSizer2.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_VERTICAL )
+		sbSizer2.Add( self.staticline41, 0, wx.EXPAND |wx.ALL, 5 )
+		
+		self.staticText91 = wx.StaticText( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Save :", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.staticText91.Wrap( -1 )
+		sbSizer2.Add( self.staticText91, 0, wx.ALL, 10 )
+		
+		self.button71 = wx.Button( sbSizer2.GetStaticBox(), wx.ID_ANY, u"Save Sheet", wx.DefaultPosition, wx.DefaultSize, 0 )
+		sbSizer2.Add( self.button71, 0, wx.ALL, 5 )
 		
 		
 		bSizer19.Add( sbSizer2, 1, wx.ALL, 5 )
@@ -184,7 +196,7 @@ class MyFrame2 ( wx.Frame ):
 		bSizer20.Add( sbSizer3, 1, 0, 0 )
 		
 		
-		bSizer7.Add( bSizer20, 0, wx.ALL|wx.EXPAND, 0 )
+		bSizer7.Add( bSizer20, 0, wx.ALL|wx.EXPAND, 5 )
 		
 		bSizer111 = wx.BoxSizer( wx.VERTICAL )
 		
@@ -197,13 +209,13 @@ class MyFrame2 ( wx.Frame ):
 		bSizer111.Add( sbSizer4, 1, wx.EXPAND, 5 )
 		
 		
-		bSizer7.Add( bSizer111, 1, wx.ALL|wx.EXPAND, 0 )
+		bSizer7.Add( bSizer111, 1, wx.ALL|wx.EXPAND, 5 )
 		
-		bSizer112 = wx.BoxSizer( wx.VERTICAL )
+		bSizer112 = wx.BoxSizer( wx.HORIZONTAL )
 		
 		sbSizer5 = wx.StaticBoxSizer( wx.StaticBox( self.panel1, wx.ID_ANY, u"Py Graph" ), wx.HORIZONTAL )
 		
-		bSizer113 = wx.BoxSizer( wx.VERTICAL )
+		bSizer113 = wx.BoxSizer( wx.HORIZONTAL )
 		
 		self.auinotebook1 = wx.aui.AuiNotebook( sbSizer5.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.aui.AUI_NB_DEFAULT_STYLE )
 		
@@ -213,10 +225,10 @@ class MyFrame2 ( wx.Frame ):
 		sbSizer5.Add( bSizer113, 1, wx.EXPAND, 0 )
 		
 		
-		bSizer112.Add( sbSizer5, 1, wx.ALL|wx.EXPAND, 0 )
+		bSizer112.Add( sbSizer5, 1, wx.ALL|wx.EXPAND, 5 )
 		
 		
-		bSizer7.Add( bSizer112, 1, wx.EXPAND, 0 )
+		bSizer7.Add( bSizer112, 1, wx.EXPAND, 5 )
 		
 		
 		bSizer6.Add( bSizer7, 1, wx.ALL|wx.EXPAND, 0 )
@@ -268,13 +280,48 @@ class MyFrame2 ( wx.Frame ):
 		self.button51.Bind( wx.EVT_BUTTON, self.button51OnButtonClick )
 		self.button6.Bind( wx.EVT_BUTTON, self.button6OnButtonClick )
 		self.button7.Bind( wx.EVT_BUTTON, self.button7OnButtonClick )
-		self.button8.Bind( wx.EVT_BUTTON, self.button8OnButtonClick )
 		self.button9.Bind( wx.EVT_BUTTON, self.button9OnButtonClick )
+		self.button71.Bind( wx.EVT_BUTTON, self.button71OnButtonClick )
 	
 	def __del__( self ):
 		pass
 	
 	
-
+	# Virtual event handlers, overide them in your derived class
+	def button5OnButtonClick( self, event ):
+		event.Skip()
+	
+	def choice6OnChoice( self, event ):
+		event.Skip()
+	
+	def choice2OnChoice( self, event ):
+		event.Skip()
+	
+	def choice3OnChoice( self, event ):
+		event.Skip()
+	
+	def choice4OnChoice( self, event ):
+		event.Skip()
+	
+	def choice5OnChoice( self, event ):
+		event.Skip()
+	
+	def button4OnButtonClick( self, event ):
+		event.Skip()
+	
+	def button51OnButtonClick( self, event ):
+		event.Skip()
+	
+	def button6OnButtonClick( self, event ):
+		event.Skip()
+	
+	def button7OnButtonClick( self, event ):
+		event.Skip()
+	
+	def button9OnButtonClick( self, event ):
+		event.Skip()
+	
+	def button71OnButtonClick( self, event ):
+		event.Skip()
 	
 
