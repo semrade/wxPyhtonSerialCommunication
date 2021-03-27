@@ -13,6 +13,7 @@ from matplotlib.backends.backend_wxagg import (
     NavigationToolbar2WxAgg as NavigationToolbar)
 from Cleaner import *
 from cmath import cos, sin
+import json
 
 ComPort = ""
 BaudRate = 0
@@ -147,6 +148,23 @@ class MainApp(MyFrame2):
     def onButtonRemove(self, event):   
         self.notebook1.DeletePage(0) 
 
+    def ReadJsonFile(self):
+        dir_main = os.path.dirname(__file__)
+        
+        ptr = open(os.path.join(dir_main,"..\\Data\\data.js"),'r')
+        json_file = ptr.read()
+        ptr.close()
+        #print(json_file)
+        data = json.loads(json_file)
+        """
+        with open (os.path.join(dir_main,"..\\Data\\data.js")) as json_file:
+            data = json.load(json_file)
+        """
+        # print the keys and values
+        for key in data:
+            value = data[key]
+            print("The key and value are ({}) = ({})".format(key, value))
+ 
 if __name__ == "__main__":
 
     app = wx.App()
@@ -170,6 +188,8 @@ if __name__ == "__main__":
     axes2 = fram.add().gca()
     axes2.plot(x1, y1)
 
+    #read json file
+    fram.ReadJsonFile()
     #fram.serialOpen()
     fram.Show(True)
     app.MainLoop()
