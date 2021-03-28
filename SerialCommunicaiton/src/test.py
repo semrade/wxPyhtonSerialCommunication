@@ -27,6 +27,16 @@ json_object = {
             "V_BUS" : "0"
         }
         ]
+    },
+    "NON_PHYSICAL_VALUES" : {
+        "CMPSS" : [
+        {
+            "CMPSS1" : "0",
+            "CMPSS2" : "0",
+            "CMPSS3" : "0",
+            "CMPSS4" : "0" 
+        }
+        ]
     }
 }
 
@@ -54,14 +64,14 @@ def iterate_multidimensional(my_dict):
             for i in range(0,len(Value)): 
                 if (isinstance(Value[i],dict)):
                     iterate_multidimensional(Value[i])
-            
-        print(str(Value))
-
+        
+        #print(Key+" : "+str(Value))
+                    
+        if (isinstance(Value,dict)):
+            print('\t'+Key+" : "+str(Value))
+        else:
+            print('\t'+Key+":")
+        
 if __name__ == '__main__':
-    """
-    content = json.loads(str(json_object))
-    print(content.Keyeys())
-    print(content.iteritems())
-    #parse_json_response(content)
-    """
+
     iterate_multidimensional(json_object)
