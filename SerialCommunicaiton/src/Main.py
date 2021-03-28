@@ -14,6 +14,7 @@ from matplotlib.backends.backend_wxagg import (
 from Cleaner import *
 from cmath import cos, sin
 import json
+from _elementtree import Element
 
 ComPort = ""
 BaudRate = 0
@@ -149,22 +150,40 @@ class MainApp(MyFrame2):
         self.notebook1.DeletePage(0) 
 
     def ReadJsonFile(self):
+        Row = 0
+        Clo = 0
         dir_main = os.path.dirname(__file__)
-        
         ptr = open(os.path.join(dir_main,"..\\Data\\data.js"),'r')
         json_file = ptr.read()
         ptr.close()
-        #print(json_file)
+        print(json_file)
         data = json.loads(json_file)
-        """
-        with open (os.path.join(dir_main,"..\\Data\\data.js")) as json_file:
-            data = json.load(json_file)
-        """
         # print the keys and values
+
         for key in data:
-            value = data[key]
-            print("The key and value are ({}) = ({})".format(key, value))
- 
+            #value = data[key]
+            #print("The key and value are ({}) = ({})".format(key, value))
+            print("The keys are ({}) and the data are ({}) ".format(key,data[key]))
+            """
+            self.grid3.SetCellValue(Row,Clo,key)
+            Clo += 1
+            print(data[key][0])
+            
+            for ele in data[key][0]:
+                self.grid3.SetCellValue(Row,Clo,ele)
+                Clo += 1
+                self.grid3.SetCellValue(Row,Clo,data[key]["I_Phase 1"])
+                Clo += 1
+            
+            
+                for item in data[key]:
+                    self.grid3.SetCellValue(Row,Clo,item)
+                    Clo += 1
+            
+            """
+            Clo = 0
+            Row += 1  
+
 if __name__ == "__main__":
 
     app = wx.App()
