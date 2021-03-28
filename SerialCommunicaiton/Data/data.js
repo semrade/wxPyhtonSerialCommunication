@@ -24,5 +24,15 @@
 			"V_BUS" : "0"
 		}
 		]
+	},
+	"NON_PHYSICAL_VALUES" : {
+		"CMPSS" : [
+		{
+			"CMPSS1" : "0",
+			"CMPSS2" : "0",
+			"CMPSS3" : "0",
+			"CMPSS4" : "0" 
+		}
+		]
 	}
 }

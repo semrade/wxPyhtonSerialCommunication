@@ -57,21 +57,22 @@ def parse_json_response(content):
 def iterate_multidimensional(my_dict):
     for Key,Value in my_dict.items():
         if(isinstance(Value,dict)):
-            print(Key+":")
+            print(Key+" g: ")
             iterate_multidimensional(Value)
-            continue
-        elif(isinstance(Value,list)):
+        else:
+            pass
+        if(isinstance(Value,list)):
+            print('\t'+Key+" p: ")
             for i in range(0,len(Value)): 
                 if (isinstance(Value[i],dict)):
                     iterate_multidimensional(Value[i])
-        
-        #print(Key+" : "+str(Value))
-                    
-        if (isinstance(Value,dict)):
-            print('\t'+Key+" : "+str(Value))
-        else:
-            print('\t'+Key+":")
-        
-if __name__ == '__main__':
 
-    iterate_multidimensional(json_object)
+        """
+        if (isinstance(Value,list)):
+            pass
+        else:
+            print('\t\t'+Key+":")
+        """
+#if __name__ == '__main__':
+
+    #iterate_multidimensional(json_object)

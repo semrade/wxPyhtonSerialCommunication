@@ -14,13 +14,9 @@ from matplotlib.backends.backend_wxagg import (
 from Cleaner import *
 from cmath import cos, sin
 import json
-from _elementtree import Element
 
-ComPort = ""
-BaudRate = 0
-Parity = 0
-StopBit = 0
-Databits = 0
+
+
 
 class Page(wx.Panel):
     def __init__(self, parent):
@@ -47,17 +43,26 @@ class MainApp(MyFrame2):
         MyFrame2.__init__(self, None)
         self.serialPort = serial.Serial()
         self.GraphCounter = 0
+        # Default parameters for serial port
+        self.ComPort = "COM12" 
+        self.BaudRate = 115200 
+        self.Databit = 8
+        self.Parity = 'N' 
+        self.StopBit = 1
     
     def serialOpen(self):
 
         try:
-            self.serialPort.port = ComPort
-            self.serialPort.baudrate = BaudRate
-            self.serialPort.parity = Parity
-            self.serialPort.stopbits = StopBit
+            self.serialPort.port = self.ComPort
+            self.serialPort.baudrate = self.BaudRate
+            self.serialPort.bytesize = self.Databit
+            self.serialPort.parity = self.Parity
+            self.serialPort.stopbits = self.StopBit
             self.serialPort.open()
+            self.richText2.AppendText("Port COM is = {}, Speed baudrate = {}, bits data = {}, parity = {}, stop bit = {}, \n".format(
+                self.ComPort,self.BaudRate,self.Databit,self.Parity,self.StopBit))
         except Exception as e:
-            print("Open port send this exception %s:"%e)
+            print("Open port send this exception :%s" %e)
         else:
             pass
         finally:
@@ -79,30 +84,31 @@ class MainApp(MyFrame2):
         return AppPorts
     
     def choice6OnChoice( self, event ):
-        ComPort = self.choice6.GetStringSelection()
-        print(ComPort)
+        self.ComPort = self.choice6.GetStringSelection()
+        print(self.ComPort)
         
     def choice2OnChoice( self, event ):
-        BaudRate = int(self.choice2.GetStringSelection())
-        print(BaudRate)
+        self.BaudRate = int(self.choice2.GetStringSelection())
+        self.choice2.Set_d
+        print(self.BaudRate)
     
     def choice3OnChoice( self, event ):
-        Parity = self.choice3.GetStringSelection()
-        if Parity == 'None':
-            Parity = 'N'
-        elif Parity == 'Odd':
-            Parity = 'O'
-        else:
-            Parity = 'E'
-        print(Parity)
+        self.Parity = self.choice3.GetStringSelection()
+        if self.Parity == 'None':
+            self.Parity = 'N'
+        elif self.Parity == 'Odd':
+            self.Parity = 'O'
+        elif self.Parity == 'Even':
+            self.Parity = "E"
+        print(self.Parity)
     
     def choice4OnChoice( self, event ):
-        Databits = int(self.choice4.GetStringSelection())
-        print(Databits)        
+        self.Databit = int(self.choice4.GetStringSelection())
+        print(self.Databit)        
     
     def choice5OnChoice( self, event ):
-        StopBit = int(self.choice5.GetStringSelection())
-        print(StopBit)
+        self.StopBit = int(self.choice5.GetStringSelection())
+        print(self.StopBit)
 
     def m_button5OnButtonClick( self, event ):
         event.Skip()
@@ -110,10 +116,11 @@ class MainApp(MyFrame2):
         
         # Virtual event handlers, overide them in your derived class
     def button5OnButtonClick( self, event ):
-        if self.serialPort.is_open == True:
+        if self.serialPort.isOpen() == True:
             self.serialPort.close()
             self.button5.SetBackgroundColour("Red")
             self.button5.SetLabel("Open")
+
         else:
             self.serialOpen()
             self.button5.SetBackgroundColour("Green")
