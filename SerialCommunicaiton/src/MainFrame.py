@@ -59,7 +59,7 @@ class MyFrame2 ( wx.Frame ):
 		
 		choice2Choices = [ u"110", u"300", u"600", u"1200", u"2400", u"4800", u"9600", u"14400", u"19200", u"38400", u"57600", u"115200", u"128000", u"256000" ]
 		self.choice2 = wx.Choice( sbSizer1.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, choice2Choices, 0 )
-		self.choice2.SetSelection( 0 )
+		self.choice2.SetSelection( 11 )
 		sbSizer1.Add( self.choice2, 0, wx.ALL, 10 )
 		
 		self.staticText7 = wx.StaticText( sbSizer1.GetStaticBox(), wx.ID_ANY, u"Parity :", wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -68,7 +68,7 @@ class MyFrame2 ( wx.Frame ):
 		
 		choice3Choices = [ u"Odd", u"Even", u"None" ]
 		self.choice3 = wx.Choice( sbSizer1.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, choice3Choices, 0 )
-		self.choice3.SetSelection( 1 )
+		self.choice3.SetSelection( 2 )
 		sbSizer1.Add( self.choice3, 0, wx.ALL, 10 )
 		
 		self.staticText6 = wx.StaticText( sbSizer1.GetStaticBox(), wx.ID_ANY, u"Data Bits :", wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -77,7 +77,7 @@ class MyFrame2 ( wx.Frame ):
 		
 		choice4Choices = [ u"7", u"8" ]
 		self.choice4 = wx.Choice( sbSizer1.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, choice4Choices, 0 )
-		self.choice4.SetSelection( 0 )
+		self.choice4.SetSelection( 1 )
 		sbSizer1.Add( self.choice4, 0, wx.ALL, 10 )
 		
 		self.staticText9 = wx.StaticText( sbSizer1.GetStaticBox(), wx.ID_ANY, u"Sotp Bits :", wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -104,7 +104,7 @@ class MyFrame2 ( wx.Frame ):
 		bSizer18.Add( self.staticline3, 1, wx.EXPAND |wx.ALL, 5 )
 		
 		
-		bSizer7.Add( bSizer18, 0, wx.ALL|wx.EXPAND, 5 )
+		bSizer7.Add( bSizer18, 0, wx.ALL|wx.EXPAND, 0 )
 		
 		bSizer19 = wx.BoxSizer( wx.HORIZONTAL )
 		
@@ -190,7 +190,7 @@ class MyFrame2 ( wx.Frame ):
 		
 		# Cell Defaults
 		self.grid3.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		sbSizer3.Add( self.grid3, 1, wx.ALIGN_TOP|wx.ALL|wx.BOTTOM|wx.EXPAND, 0 )
+		sbSizer3.Add( self.grid3, 1, wx.ALIGN_TOP|wx.ALL|wx.BOTTOM|wx.EXPAND, 5 )
 		
 		
 		bSizer20.Add( sbSizer3, 1, 0, 0 )
@@ -219,7 +219,7 @@ class MyFrame2 ( wx.Frame ):
 		
 		self.auinotebook1 = wx.aui.AuiNotebook( sbSizer5.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.aui.AUI_NB_DEFAULT_STYLE )
 		
-		bSizer113.Add( self.auinotebook1, 1, wx.EXPAND |wx.ALL, 0 )
+		bSizer113.Add( self.auinotebook1, 1, wx.EXPAND |wx.ALL, 5 )
 		
 		
 		sbSizer5.Add( bSizer113, 1, wx.EXPAND, 0 )

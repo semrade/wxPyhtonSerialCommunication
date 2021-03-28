@@ -71,7 +71,7 @@ class MainApp(MyFrame2):
         return True
     
     def serialClose(self):
-        pass
+        self.serialPort.close()
     
     def listPort(self):
         ports = serial.tools.list_ports.comports()
@@ -197,8 +197,9 @@ if __name__ == "__main__":
     fram = MainApp() 
     port = fram.listPort()
     # initialize the colors items
-    
-    
+    # create wx.Bitmap object 
+    bmp = wx.Bitmap("C:\\Users\\STarikUser\\Desktop\\Developpers_Icons\\must_have_icon_set\\Play\\Play_24x24.png")
+    fram.button5.SetBitmap(bmp)
     for portElem in port:
         fram.choice6.AppendItems(portElem)  
         
